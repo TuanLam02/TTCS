@@ -9,8 +9,8 @@ void docfile(){
 	fstream inp("input.txt");
 	inp>>n>>m;
 	inp>>s>>e;
-	for(int i = 1; i < n; i++){
-		for(int j = 1; j < n; j++){
+	for(int i = 1;i<=n; i++){
+		for(int j = 1; j<=n; j++){
 			a[i][j] = -1;
 		}
 	}
@@ -18,14 +18,15 @@ void docfile(){
 		int u,v;
 		inp>>u>>v;
 		inp>>a[u][v];
-		a[u][v] = a[v][u];
+		a[v][u]=a[u][v];
 	}
 	inp.close();
 }
 void dijkstra(){
-	for(int i = 1; i < n; i++){
+	for(int i = 1; i <= n; i++){
 		f[i]=maxf;
 		checkdinh[i]=true;
+		
 	}
 	f[s]=0;
 	int v=s, fmin;
@@ -37,7 +38,9 @@ void dijkstra(){
 				v=i;
 			}
 		}
-		if(fmin==maxf) break;
+		if(fmin==maxf){
+		break;			
+		}
 		checkdinh[v]=false;
 		for(int i = 1; i<=n;i++){
 			if(a[v][i]>0 && f[i]>f[v]+a[v][i]){
@@ -48,7 +51,21 @@ void dijkstra(){
 	}
 }
 void ketqua(){
-	cout<<f[e];
+	if(f[e]==maxf) cout<<"khong co duong di";
+	else{
+		cout<<f[e]<<endl;
+		int duong[maxn],d=0;
+		d++;
+		duong[d]=e;
+		while(vet[e]!=0){
+			e=vet[e];
+			d++;
+			duong[d]=e;
+		}
+		for(int i = d;i>0;i--){
+			cout<<duong[i]<<" ";
+		}
+	}
 }
 main(){
 	docfile();
