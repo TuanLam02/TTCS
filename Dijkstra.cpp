@@ -5,10 +5,11 @@
 using namespace std;
 int a[maxn][maxn],n,m,s,e;
 int f[maxn],vet[maxn],check[maxn];
-void docfile(){
-	fstream inp("input.txt");
-	inp>>n>>m;
-	inp>>s;
+void Input(){
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+	cin>>n>>m;
+	cin>>s;
 	for(int i=1;i<=n;i++){
 		for(int j=1;j<=n;j++){
 			a[i][j]=maxf;
@@ -16,13 +17,13 @@ void docfile(){
 	}
 	for(int i=1;i<=m;i++){
 		int u,v;
-		inp>>u>>v;
-		inp>>a[u][v];
+		cin>>u>>v;
+		cin>>a[u][v];
 		a[v][u]=a[u][v];
 	}
-	inp.close();
+
 }
-void dijkstra(){
+void Dijkstra(){
 	for(int i=1;i<=n;i++){
 		check[i]=true;
 		f[i]=maxf;
@@ -53,19 +54,20 @@ void dijkstra(){
 		
 	}
 }
-void output(){
+void Output(){
 	
 	for(int i=1;i<=n;i++){
 		if(s==i){
-			cout<<"Khong co duong di den: "<<i<<endl;
+			cout<<"KHONG CO DUONG DI!!!!!!!!!!!!";
 			cout<<endl;
-		} 
+			cout<<endl;
+		}
 		else{
-			cout<<"Trong so di den "<<i<<" la: "<<f[i]<<endl;
-			cout<<"Duong di la: ";
-			int duong[maxn], d=0;
-			d++;
+			cout<<"TRONG SO DUONG DI DEN "<<i<<" LA: "<<f[i]<<endl;
+			cout<<"DUONG DI DEN "<<i<<" LA: ";
+			int duong[maxn],d=0;
 			int k=i;
+			d++;
 			duong[d]=k;
 			while(vet[k]!=0){
 				k=vet[k];
@@ -73,16 +75,15 @@ void output(){
 				duong[d]=k;
 			}
 			for(int j=d;j>0;j--){
-			cout<<duong[j]<<" ";
+				cout<<duong[j]<<" ";
 			}
 			cout<<endl;
 			cout<<endl;
 		}
-		
-	}	
+	}
 }
 int main(){
-	docfile();
-	dijkstra();
-	output();
+	Input();
+	Dijkstra();
+	Output();
 }
