@@ -80,6 +80,7 @@ void Output(){
 }
 int main(){
 	freopen("bellman.txt","r",stdin);
+	freopen("bellman1.txt","w",stdout);
 	Create();
 	Bellmanford();
 	Output();
