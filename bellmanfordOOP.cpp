@@ -80,7 +80,7 @@ class Bellman{
 };
 int main(){
 	freopen("bellman.txt","r",stdin);
-//	freopen("bellman1.txt","w",stdout);
+	freopen("bellman1.txt","w",stdout);
 	Bellman a;
 	a.Create();
 	a.Bellmanford();
