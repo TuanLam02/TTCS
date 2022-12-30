@@ -5,6 +5,7 @@ using namespace std;
 class ShortestPath{
 	private:
 		int matrix[maxn][maxn];
+		int tracef[maxn][maxn];
 		int num_vertex;
 		int num_distance;
 		int start;
@@ -93,6 +94,25 @@ class ShortestPath{
 				i++;
 			}
 		}
+		void Floyd(){
+			for (int i = 1; i <= num_vertex; i++) {
+		        for (int j = 1; j <= num_vertex; j++) {
+		            if (matrix[i][j] != INT_MAX)
+		            	tracef[i][j] = j;
+		        }
+		    }
+		    int k = 1, i = 1, j = 1;
+		    for (k = 1; k <= num_vertex; k++) {
+		        for (i = 1; i <= num_vertex; i++) {
+		            for (j = 1; j <= num_vertex; j++) {
+		                if (i != k && j != k && matrix[i][j] > matrix[i][k] + matrix[k][j] && matrix[i][k] != INT_MAX && matrix[k][j] != INT_MAX) {
+		                    matrix[i][j] = matrix[i][k] + matrix[k][j];
+		                    tracef[i][j] = tracef[i][k];
+		                }
+		            }
+		        }
+		    }
+		}
 		void Output(){
 			for(int i=1;i<=num_vertex;i++){
 				if(start==i || w[i]==INT_MAX){
@@ -119,7 +139,24 @@ class ShortestPath{
 				}
 			}
 		}
+		void Output1(){
+			for (int i = 1; i <= num_vertex; i++) {
+		        for (int j = 1; j <= num_vertex; j++) {
+		            if (matrix[i][j] != INT_MAX && i != j) {
+		                cout << "KHOANG CACH GIUA: " << i << " VA " << j << " LA: " << matrix[i][j];
+		                cout << " - DUONG DI: " << i << " -> ";
+		                int k = tracef[i][j];
+		                while (k != j) {
+		                    cout << k << " -> ";
+		                    k = tracef[k][j];
+		                }
+		                cout << j << endl;
+		            }
+		        }
+		    }
+		}
 };
+
 int main(){
 	ShortestPath a;
 	ShortestPath b;
@@ -139,6 +176,12 @@ int main(){
 		b.Create();
 		b.Bellmanford();
 		b.Output();
+	}
+	else if(k==3){
+		freopen("floyd.txt", "r", stdin);
+		c.Create();
+		c.Floyd();
+		c.Output1();
 	}
 	else{
 		cout<<"KHONG CO THUAT TOAN NAO DUOC THUC HIEN";
