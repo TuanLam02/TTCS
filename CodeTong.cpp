@@ -13,7 +13,6 @@ class ShortestPath{
 		void Create(){
 			cin>>num_vertex;
 			cin>>num_distance;
-			cin>>start;
 			for(int i=1;i<=num_vertex;i++){
 				for(int j=1;j<=num_vertex;j++){
 					if(i!=j){
@@ -31,6 +30,7 @@ class ShortestPath{
 			}
 		}
 		void Dijkstra(){
+			cin>>start;
 			for(int i=1;i<=num_vertex;i++){
 				for(int j=1;j<=num_vertex;j++){
 					matrix[j][i]=matrix[i][j];
@@ -66,6 +66,7 @@ class ShortestPath{
 			}
 		}
 		void Bellmanford(){
+			cin>>start;
 			for(int i=1;i<=num_vertex;i++){
 				check[i]=true;
 				w[i]=INT_MAX;
